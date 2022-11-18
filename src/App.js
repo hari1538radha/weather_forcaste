@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useEffect, useState } from "react";
 
 function App() {
+  const datasss = [];
+  const handelclick = (e) => {
+    e.preventDefault();
+    const datas = fetch(
+      "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/coimbatore?unitGroup=us&key=7XTCGNF3ZVWDYVF8TCHLTKW6C&contentType=json"
+    );
+    datas
+      .then((response) => response.json())
+      .then((data) => datasss.push(data));
+  };
+  useEffect(() => {
+    console.log(datasss[0]);
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      Hi
+      <div>
+        <p>vhj{datasss[0]?.latitude}</p>
+      </div>
+      <button onClick={handelclick}>hello</button>
     </div>
   );
 }
