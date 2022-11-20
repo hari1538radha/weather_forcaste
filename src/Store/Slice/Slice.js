@@ -15,7 +15,7 @@ const educationInfo = createSlice({
     name: "educationExcel",
     initialState: {
         weatherData: [],
-        Loading: true,
+        Loading: false,
       },
     extraReducers: {
         [getEducationInfo.pending]: (state, action) => {
