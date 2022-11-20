@@ -1,26 +1,19 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getEducationInfo } from "./Store/Slice/Slice";
 
 function App() {
-  const datasss = [];
-  const handelclick = (e) => {
-    e.preventDefault();
-    const datas = fetch(
-      "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/coimbatore?unitGroup=us&key=7XTCGNF3ZVWDYVF8TCHLTKW6C&contentType=json"
-    );
-    datas
-      .then((response) => response.json())
-      .then((data) => datasss.push(data));
-  };
-  useEffect(() => {
-    console.log(datasss[0]);
-  }, []);
-
+  const dispath = useDispatch();
+ const handelclick = () =>{
+  dispath(getEducationInfo())
+ }
+ const{ weatherData,Loading} = useSelector(state => state.educationinfo)
+ console.log(weatherData)
   return (
     <div className="App">
       Hi
       <div>
-        <p>vhj{datasss[0]?.latitude}</p>
       </div>
       <button onClick={handelclick}>hello</button>
     </div>
