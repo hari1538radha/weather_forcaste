@@ -9,8 +9,8 @@ const TempratureContainer = () => {
   console.log(Loading);
   return (
     <div className="z-50 pt-64 bg-no-repeat  h-64 bg-cover flex items-center text-center justify-center " >
-      <div className="border-[1px] border-gray-700 rounded-lg w-[400px] h-[400px] shadow-lg shadow-slate-500 " >
-        {Loading === false && (
+      <div className="bg-gradient-to-r from-[#74EBD5] to-[#9FACE6] border-[1px] border-gray-700 rounded-lg w-[400px] h-[400px] shadow-lg shadow-slate-500 " >
+        {Loading === false && weatherData && (
           <div className="third-full-con-pro">
             {weatherData && <p>{weatherData?.currentConditions?.temp}<sup>o</sup>C</p>}
             {weatherData && (
@@ -18,17 +18,23 @@ const TempratureContainer = () => {
             )}
           </div>
         )}
-      </div>
-      <div>
-        {Loading === true && (
-          <div className="third-full-con-pro">
-            <p>nodatafound</p>
-            <img src="https://i.gifer.com/origin/1e/1eca394692a06b6bdb31383a2a1bcaf9_w200.gif"></img>
-          </div>
+          {Loading === true && (
+           <div className="third-full-con-pro">
+          <p></p>
+           {weatherData && (
+             <p>degree</p>
+           )}
+         </div>
+          // <div className="third-full-con-pro">
+          //   <p>nodatafound</p>
+          //   <img src="https://i.gifer.com/origin/1e/1eca394692a06b6bdb31383a2a1bcaf9_w200.gif"></img>
+          // </div>
         )}
       </div>
+     
     </div>
   );
 };
+
 
 export default TempratureContainer;

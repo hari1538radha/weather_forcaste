@@ -3,9 +3,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getEducationInfo = createAsyncThunk(
   "excel/education",
-  async () => {
+  async (data) => {
     return fetch(
-      "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/coimbatore?unitGroup=us&key=7XTCGNF3ZVWDYVF8TCHLTKW6C&contentType=json",
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${data}?unitGroup=us&key=7XTCGNF3ZVWDYVF8TCHLTKW6C&contentType=json`,
       {
         method: "GET",
         headers: {},
@@ -18,7 +18,7 @@ const educationInfo = createSlice({
   name: "educationExcel",
   initialState: {
     weatherData: [],
-    Loading: false,
+    Loading: true,
   },
   extraReducers: {
     [getEducationInfo.pending]: (state, action) => {
