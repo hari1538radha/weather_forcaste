@@ -17,10 +17,11 @@ const TempratureContainer = () => {
   console.log(weatherData);
   console.log(Loading);
   return (
-    <div className="z-50 pt-64 bg-no-repeat  h-64 bg-cover flex items-center text-center justify-center " >
-      <div className="bg-gradient-to-r from-[#74EBD5] to-[#9FACE6] border-[1px] border-gray-700 rounded-lg w-[400px] h-[400px] shadow-lg shadow-slate-500 " >
+    <div className="z-50  pt-72 bg-no-repeat  h-64 bg-cover flex items-center text-center justify-center " >
+      <div className="  relative border-[1px] flex justify-between flex-col border-gray-300 rounded-3xl w-[300px] h-[500px] shadow-lg shadow-slate-300 " >
         {Loading === false && weatherData && (
           <div className="third-full-con-pro">
+            {weatherData && <p>{weatherData?.resolvedAddress}</p>}
             {weatherData && <p>{celsius}<sup>o</sup>C</p>}
             {weatherData && (
               <p>{weatherData?.currentConditions?.conditions}<sup>o</sup>C </p>
@@ -39,8 +40,24 @@ const TempratureContainer = () => {
           //   <img src="https://i.gifer.com/origin/1e/1eca394692a06b6bdb31383a2a1bcaf9_w200.gif"></img>
           // </div>
         )}
+         <div className=" absolute bottom-0  bg-slate-200 h-[200px] w-full rounded-3xl border-[1px] border-slate-200">
+          <div className="flex items-center justify-around">
+          {weatherData?.currentConditions && (<p>sunrise</p>)} {weatherData?.currentConditions?.sunrise}
+     {weatherData?.currentConditions && (<p>sunset</p>)} {weatherData?.currentConditions?.sunset}
+          </div>
+   <div>
+   {weatherData?.currentConditions && (<p>humidity</p>)} {weatherData?.currentConditions?.humidity} {weatherData?.currentConditions && (<p>%</p>)}
+     {weatherData?.currentConditions && (<p>pressure</p>)} {weatherData?.currentConditions?.pressure} {weatherData?.currentConditions && (<p>hPa</p>)}
+   </div>
+   <div>
+   {weatherData?.currentConditions && (<p>windspeed</p>)} {weatherData?.currentConditions?.windspeed} {weatherData?.currentConditions && (<p>km/hr</p>)}
+     {weatherData?.currentConditions && (<p>precipitation</p>)} {weatherData?.currentConditions?.dew} {weatherData?.currentConditions && (<p>%</p>)}
+   </div>
+    
+    
+     </div>
       </div>
-     
+    
     </div>
   );
 };
