@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { axio } from "../../Config/Config.js";
+
 
 export const getEducationInfo = createAsyncThunk(
   "excel/education",
