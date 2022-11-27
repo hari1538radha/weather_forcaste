@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import images from "../Images/pin.png"
 
 const image = "https://www.google.com/imgres?imgurl=https%3A%2F%2Fimg.freepik.com%2Ffree-photo%2Fwhite-cloud-blue-sky-sea_74190-4488.jpg%3Fw%3D2000&imgrefurl=https%3A%2F%2Fwww.freepik.com%2Fphotos%2Fsky&tbnid=0vtjs0w6cjiOSM&vet=12ahUKEwiK-rmulbz7AhXpidgFHV6-ARUQMygDegUIARDhAQ..i&docid=17usU2X3eW1mcM&w=2000&h=1333&q=sky%20images&safe=active&ved=2ahUKEwiK-rmulbz7AhXpidgFHV6-ARUQMygDegUIARDhAQ"
 const TempratureContainer = () => {
   const { weatherData, Loading } = useSelector((state) => state.educationinfo);
+  const [celsius,setCelcius] = useState(0);
+  useEffect(() =>
+  {
+    const farenhiet = weatherData?.currentConditions?.temp 
+    setCelcius(Math.round(farenhiet-32*5/9))
+  
+    console.log(celsius)
+  
+  },[weatherData])
   console.log(weatherData);
   console.log(Loading);
   return (
@@ -12,7 +21,7 @@ const TempratureContainer = () => {
       <div className="bg-gradient-to-r from-[#74EBD5] to-[#9FACE6] border-[1px] border-gray-700 rounded-lg w-[400px] h-[400px] shadow-lg shadow-slate-500 " >
         {Loading === false && weatherData && (
           <div className="third-full-con-pro">
-            {weatherData && <p>{weatherData?.currentConditions?.temp}<sup>o</sup>C</p>}
+            {weatherData && <p>{celsius}<sup>o</sup>C</p>}
             {weatherData && (
               <p>{weatherData?.currentConditions?.conditions}<sup>o</sup>C </p>
             )}
