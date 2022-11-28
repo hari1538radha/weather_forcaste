@@ -4,10 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 const DailyWeather = () => {
   const { weatherData, Loading } = useSelector((state) => state.educationinfo);
   const [celsius, setCelcius] = useState(0);
+  const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  
   useEffect(() => {
     const farenhiet = weatherData?.currentConditions?.temp;
     setCelcius(Math.round(farenhiet - (32 * 5) / 9));
-
+    if(Loading == false)
+    {
+        const date = new Date(weatherData?.days[0]?.datetime)
+        const day = date.getDay();
+        console.log(weekday[day])
+      
+    }
+  
     console.log(celsius);
   }, [weatherData]);
   console.log(weatherData);
@@ -30,14 +39,14 @@ const DailyWeather = () => {
           //   <img src="https://i.gifer.com/origin/1e/1eca394692a06b6bdb31383a2a1bcaf9_w200.gif"></img>
           // </div>
         )}
-        <div>
+        <div >
           <p> Next 14 days</p>
 
           {Loading === false && (
-            <div>
+            <div className="flex flex-col gap-y-3">
                 {weatherData && weatherData?.days.map((obj) =>
                 (
-<div className=" border-[1px] border-slate-300 flex items-start flex-col">
+<div className=" border-[1px] rounded-t-lg border-slate-300 flex items-start pl-5 flex-col bg-gradient-to-r from-slate-100 to-neutral-200">
                 <p>{obj?.datetime}</p>
                  <p>{obj.conditions}</p>
               </div>
