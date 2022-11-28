@@ -14,7 +14,7 @@ const DailyWeather = () => {
   console.log(Loading);
   return (
     <div className="z-50  pt-72 bg-no-repeat  h-64 bg-cover flex items-center text-center justify-center ">
-      <div className="   border-[1px] flex justify-between flex-col border-gray-300 rounded-3xl w-[300px] h-[500px] shadow-lg shadow-slate-300 ">
+      <div className="   border-[1px] flex justify-between flex-col border-gray-300 rounded-3xl w-[300px] h-[500px] shadow-lg shadow-slate-300 overflow-y-scroll no-scrollbar">
         {Loading === false && weatherData && (
           <div className="third-full-con-pro">
             {weatherData && <p>{weatherData?.resolvedAddress}</p>}
@@ -35,11 +35,15 @@ const DailyWeather = () => {
 
           {Loading === false && (
             <div>
-              <div>
-                {weatherData && <p>{weatherData?.days[1]?.datetime}</p>}
-                {weatherData && <p>{weatherData?.days[1].conditions}</p>}
+                {weatherData && weatherData?.days.map((obj) =>
+                (
+<div className=" border-[1px] border-slate-300 flex items-start flex-col">
+                <p>{obj?.datetime}</p>
+                 <p>{obj.conditions}</p>
               </div>
-              <div>
+                ))}
+              
+              {/* <div>
                 {weatherData && <p>{weatherData?.days[2]?.datetime}</p>}
                 {weatherData && <p>{weatherData?.days[2].conditions}</p>}
               </div>
@@ -50,7 +54,7 @@ const DailyWeather = () => {
               <div>
                 {weatherData && <p>{weatherData?.days[4]?.datetime}</p>}
                 {weatherData && <p>{weatherData?.days[4].conditions}</p>}
-              </div>
+              </div> */}
             </div>
           )}
         </div>
