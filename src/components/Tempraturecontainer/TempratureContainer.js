@@ -58,6 +58,7 @@ const TempratureContainer = () => {
               <img className="w-8 mr-2" src={sunrise}></img>
               {weatherData?.currentConditions && <p>sunrise</p>}{" "}
               </div>
+              
              
               <p> {weatherData?.currentConditions?.sunrise}</p>
             </div>
